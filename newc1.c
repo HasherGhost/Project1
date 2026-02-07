@@ -127,6 +127,5 @@ void cubic (int a[3][3],int *s1,int *s2,int *s3){
 
 int vec (int a[3][3],double r1,double r2,double r3){
 
-    main();
     
 } 
