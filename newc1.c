@@ -90,7 +90,7 @@ void cubic (int a[3][3],int *s1,int *s2,int *s3){
     double i;
     int root_count = 0;
 
-    double roots[3];
+    double roots[3] = {0,0,0};
     double first = 1;
     double prev = 0;
 
@@ -126,6 +126,40 @@ void cubic (int a[3][3],int *s1,int *s2,int *s3){
 }
 
 int vec (int a[3][3],double r1,double r2,double r3){
+
+    double roots[3] = {r1, r2, r3};
+
+    for (int k = 0; k < 3; k++) {
+        double r = roots[k];
+        double m[3][3];
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                m[i][j] = (i == j) ? (a[i][j] - r) : a[i][j];
+            }
+        }
+
+        double v[3];
+        v[0] = m[0][1] * m[1][2] - m[1][1] * m[0][2];
+        v[1] = m[0][2] * m[1][0] - m[1][2] * m[0][0];
+        v[2] = m[0][0] * m[1][1] - m[1][0] * m[0][1];
+
+        if (v[0] == 0 && v[1] == 0 && v[2] == 0) {
+            v[0] = m[1][1] * m[2][2] - m[2][1] * m[1][2];
+            v[1] = m[1][2] * m[2][0] - m[2][2] * m[1][0];
+            v[2] = m[1][0] * m[2][1] - m[2][0] * m[1][1];
+        }
+
+        double norm = sqrt(v[0] * v[0] + v[1] * v[1] + v[2] * v[2]);
+        if (norm != 0) {
+            v[0] /= norm;
+            v[1] /= norm;
+            v[2] /= norm;
+        }
+
+        printf("\nEigenvector for root %.2f:\n", r);
+        printf("\t[ %.2f\t,%.2f\t,%.2f ]\n", v[0], v[1], v[2]);
+    }
 
     
 } 
