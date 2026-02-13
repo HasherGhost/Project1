@@ -161,5 +161,5 @@ int vec (int a[3][3],double r1,double r2,double r3){
         printf("\t[ %.2f\t,%.2f\t,%.2f ]\n", v[0], v[1], v[2]);
     }
 
-    
+    // made by ~ Sanskar,Atharva,Sarang,Srusti,shri
 } 
